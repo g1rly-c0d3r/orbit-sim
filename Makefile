@@ -1,7 +1,7 @@
 PLPLOTMODPATH=/usr/lib/fortran/modules/plplot
 PLPLOTPATH=/usr/lib/
 F95=gfortran
-F95FLAGS= -g -Og -I${HOME}/.local/include/ -I${PLPLOTMODPATH} -L ${PLPLOTPATH}
+F95FLAGS= -O2 -march=native -I${HOME}/.local/include/ -I${PLPLOTMODPATH} -L ${PLPLOTPATH}
 
 OBJS = body.o plot.o main.o 
 
@@ -14,4 +14,4 @@ all: $(OBJS)
 run: all
 	./orbit_sim -dev pngcairo
 clean:
-	rm -f ./target/data/* *.o *.mod orbit_sim
+	rm -f ./target/data/* *.o *.mod orbit_sim orbit_sim.mp4

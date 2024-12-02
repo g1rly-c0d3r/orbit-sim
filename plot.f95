@@ -29,17 +29,17 @@ contains
     call plinit()
     call pladv(0)
     ! set actual plot window size as a fraction of the canvas, xmin, xmax, ymin, ymax
-    call plvpor(0.05, 0.9, 0.0, 0.8)
+    call plvpor(0.01, 0.99, 0.0, 0.8)
     ! setup the data range
     call plwind(-bounds(1), bounds(1), -bounds(2)+1.0, bounds(2)-1.0)
     ! color map; 15 = white
     call plcol0(15)
     ! setup the frame for the plot, bounds(1) is xlimits, bounds(2) is ylimit, bounds(3) is zlimit, last 2 args are up angle and turn angle
     call plw3d(2.0*bounds(1),2.0*bounds(2), 2.0*bounds(3),&
-      -bounds(1), bounds(1), -bounds(2), bounds(2), -bounds(3), bounds(3), 25.0, 45.0)
-    call plbox3('bnstu', 'x axis', 0.0_pl_test_flt, 0, &
-               'bnstu', 'y axis', 0.0_pl_test_flt, 0, &
-               'bcmnstuv', 'z axis', 0.0_pl_test_flt, 0)
+      -bounds(1), bounds(1), -bounds(2), bounds(2), -bounds(3), bounds(3), 50.0, 60.0)
+    call plbox3('bnstu', 'x (1E9 m)', 0.0_pl_test_flt, 0, &
+               'bnstu', 'y (1E9 m)', 0.0_pl_test_flt, 0, &
+               'bcmnstuv', 'z (1E9 m)', 0.0_pl_test_flt, 0)
     do i = 1, len
     ! turns the position vector of the system into the correct type for plplot
       x = [system(i)%posi(1)]
@@ -49,15 +49,13 @@ contains
       SELECT CASE (i)
         CASE (1) 
           call plstring3(x,y,z, "O")
-        CASE(2)
+        CASE DEFAULT
           call plstring3(x,y,z, "o")
-        CASE(3)
-          call plstring3(x,y,z, ".")
       END SELECT
 
           
     end do
-    call plmtex('t', 1.0_pl_test_flt, 0.5_pl_test_flt, 0.5_pl_test_flt, filename)
+    call plmtex('t', 1.0_pl_test_flt, 0.5_pl_test_flt, 0.5_pl_test_flt, "Galilean moons orbiting Jupiter")
 
     call plend()
   end subroutine plot_frame
