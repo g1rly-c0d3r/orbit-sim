@@ -1,4 +1,4 @@
-PLPLOTMODPATH=${HOME}/.local/lib/fortran/modules/plplot/
+PLPLOTMODPATH=/usr/lib/fortran/modules/plplot
 PLPLOTPATH=/usr/lib/
 F95=gfortran
 F95FLAGS= -g -Og -I${HOME}/.local/include/ -I${PLPLOTMODPATH} -L ${PLPLOTPATH}

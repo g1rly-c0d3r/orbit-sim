@@ -46,7 +46,16 @@ contains
       y = [system(i)%posi(2)]
       z = [system(i)%posi(3)]
 
-      call plstring3(x,y,z, "o")
+      SELECT CASE (i)
+        CASE (1) 
+          call plstring3(x,y,z, "O")
+        CASE(2)
+          call plstring3(x,y,z, "o")
+        CASE(3)
+          call plstring3(x,y,z, ".")
+      END SELECT
+
+          
     end do
     call plmtex('t', 1.0_pl_test_flt, 0.5_pl_test_flt, 0.5_pl_test_flt, filename)
 
